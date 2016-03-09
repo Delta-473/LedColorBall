@@ -4,6 +4,9 @@
 *.obj
 *.elf
 
+# Directory's
+xc888_lib_v0.1/
+
 # Precompiled Headers
 *.gch
 *.pch

@@ -1,0 +1,22 @@
+-muwx
+-i C:\Users\Christophe\Documents\GitHub\LedColorBall\LedBolXC888\OLD\LedBolXC888.hex
+-M
+-Y
+-X 0x0600
+-C 0x5000
+-y
+-b HOME = 0x0000
+-b XSEG = 0xf000
+-b PSEG = 0xf000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-k D:\SDCC\bin\..\lib\small
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedBolXC888\OLD\main.rel
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedBolXC888\xc888_lib_v0.1\lib\xcez_lib.rel
+
+-e
