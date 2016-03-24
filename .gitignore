@@ -33,3 +33,5 @@ xc888_lib_v0.1/
 
 # Debug files
 *.dSYM/
+*.tlog
+*.log
