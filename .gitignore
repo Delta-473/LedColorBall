@@ -6,6 +6,9 @@
 
 # Directory's
 xc888_lib_v0.1/
+LedColorBall/Debug
+LedColorBall/Server Control GUI/bin/
+LedColorBall/Server Control GUI/obj/
 
 # Precompiled Headers
 *.gch
