@@ -1,5 +1,4 @@
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\bin\Debug\Server Control GUI.exe.config
-C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.MainGUI.resources
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.Resources.resources
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server Control GUI.vbproj.GenerateResource.Cache
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\bin\Debug\Server Control GUI.exe
@@ -8,3 +7,10 @@ C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GU
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server Control GUI.exe
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server Control GUI.xml
 C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server Control GUI.pdb
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.ServerControler.resources
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\bin\Debug\nl-BE\Server Control GUI.resources.dll
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.About.resources
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.About.nl-BE.resources
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.ServerControler.nl-BE.resources
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\nl-BE\Server Control GUI.resources.dll
+C:\Users\Christophe\Documents\GitHub\LedColorBall\LedColorBall\Server Control GUI\obj\Debug\Server_Control_GUI.Settings.resources

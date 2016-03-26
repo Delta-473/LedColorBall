@@ -33,20 +33,20 @@ Partial Class ServerControler
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OverToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Color = New System.Windows.Forms.GroupBox()
+        Me.LabelGreen = New System.Windows.Forms.Label()
+        Me.LabelBlue = New System.Windows.Forms.Label()
         Me.LabelRed = New System.Windows.Forms.Label()
         Me.Blue = New System.Windows.Forms.NumericUpDown()
         Me.Green = New System.Windows.Forms.NumericUpDown()
         Me.Red = New System.Windows.Forms.NumericUpDown()
-        Me.LabelGreen = New System.Windows.Forms.Label()
-        Me.LabelBlue = New System.Windows.Forms.Label()
         Me.GroupBoxStatus = New System.Windows.Forms.GroupBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ConsoleInput = New System.Windows.Forms.TextBox()
         Me.ConsoleOutput = New System.Windows.Forms.TextBox()
-        Me.Process1 = New System.Diagnostics.Process()
         Me.MenuStrip2.SuspendLayout()
         Me.Color.SuspendLayout()
         CType(Me.Blue, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,7 +67,7 @@ Partial Class ServerControler
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(93, 46)
+        Me.Button2.Location = New System.Drawing.Point(742, 319)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 1
@@ -104,19 +104,19 @@ Partial Class ServerControler
         'VerbindingenToolStripMenuItem
         '
         Me.VerbindingenToolStripMenuItem.Name = "VerbindingenToolStripMenuItem"
-        Me.VerbindingenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.VerbindingenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.VerbindingenToolStripMenuItem.Text = "Verbindingen"
         '
         'InstellingenToolStripMenuItem
         '
         Me.InstellingenToolStripMenuItem.Name = "InstellingenToolStripMenuItem"
-        Me.InstellingenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.InstellingenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.InstellingenToolStripMenuItem.Text = "Instellingen"
         '
         'AfsluitenToolStripMenuItem
         '
         Me.AfsluitenToolStripMenuItem.Name = "AfsluitenToolStripMenuItem"
-        Me.AfsluitenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AfsluitenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.AfsluitenToolStripMenuItem.Text = "Afsluiten"
         '
         'HelpToolStripMenuItem
@@ -146,6 +146,26 @@ Partial Class ServerControler
         Me.Color.TabIndex = 5
         Me.Color.TabStop = False
         Me.Color.Text = "Kleur"
+        '
+        'LabelGreen
+        '
+        Me.LabelGreen.AutoSize = True
+        Me.LabelGreen.Location = New System.Drawing.Point(15, 47)
+        Me.LabelGreen.Name = "LabelGreen"
+        Me.LabelGreen.Size = New System.Drawing.Size(15, 13)
+        Me.LabelGreen.TabIndex = 7
+        Me.LabelGreen.Text = "G"
+        Me.LabelGreen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'LabelBlue
+        '
+        Me.LabelBlue.AutoSize = True
+        Me.LabelBlue.Location = New System.Drawing.Point(15, 74)
+        Me.LabelBlue.Name = "LabelBlue"
+        Me.LabelBlue.Size = New System.Drawing.Size(14, 13)
+        Me.LabelBlue.TabIndex = 8
+        Me.LabelBlue.Text = "B"
+        Me.LabelBlue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LabelRed
         '
@@ -182,26 +202,6 @@ Partial Class ServerControler
         Me.Red.TabIndex = 6
         Me.Red.Tag = ""
         '
-        'LabelGreen
-        '
-        Me.LabelGreen.AutoSize = True
-        Me.LabelGreen.Location = New System.Drawing.Point(15, 47)
-        Me.LabelGreen.Name = "LabelGreen"
-        Me.LabelGreen.Size = New System.Drawing.Size(15, 13)
-        Me.LabelGreen.TabIndex = 7
-        Me.LabelGreen.Text = "G"
-        Me.LabelGreen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'LabelBlue
-        '
-        Me.LabelBlue.AutoSize = True
-        Me.LabelBlue.Location = New System.Drawing.Point(15, 74)
-        Me.LabelBlue.Name = "LabelBlue"
-        Me.LabelBlue.Size = New System.Drawing.Size(14, 13)
-        Me.LabelBlue.TabIndex = 8
-        Me.LabelBlue.Text = "B"
-        Me.LabelBlue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'GroupBoxStatus
         '
         Me.GroupBoxStatus.Controls.Add(Me.CheckBox4)
@@ -215,25 +215,15 @@ Partial Class ServerControler
         Me.GroupBoxStatus.TabStop = False
         Me.GroupBoxStatus.Text = "Status"
         '
-        'CheckBox1
+        'CheckBox4
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(94, 17)
-        Me.CheckBox1.TabIndex = 7
-        Me.CheckBox1.Text = "Server Starten"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(6, 37)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(117, 17)
-        Me.CheckBox2.TabIndex = 8
-        Me.CheckBox2.Text = "Netwerk Connectie"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.CheckBox4.AutoSize = True
+        Me.CheckBox4.Location = New System.Drawing.Point(6, 75)
+        Me.CheckBox4.Name = "CheckBox4"
+        Me.CheckBox4.Size = New System.Drawing.Size(104, 17)
+        Me.CheckBox4.TabIndex = 10
+        Me.CheckBox4.Text = "Systeem Gereed"
+        Me.CheckBox4.UseVisualStyleBackColor = True
         '
         'CheckBox3
         '
@@ -245,25 +235,43 @@ Partial Class ServerControler
         Me.CheckBox3.Text = "Verbinding Zender"
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
-        'CheckBox4
+        'CheckBox2
         '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Location = New System.Drawing.Point(6, 75)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(104, 17)
-        Me.CheckBox4.TabIndex = 10
-        Me.CheckBox4.Text = "Systeem Gereed"
-        Me.CheckBox4.UseVisualStyleBackColor = True
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(6, 37)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(117, 17)
+        Me.CheckBox2.TabIndex = 8
+        Me.CheckBox2.Text = "Netwerk Connectie"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(94, 17)
+        Me.CheckBox1.TabIndex = 7
+        Me.CheckBox1.Text = "Server Starten"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ConsoleInput)
         Me.GroupBox1.Controls.Add(Me.ConsoleOutput)
-        Me.GroupBox1.Location = New System.Drawing.Point(338, 376)
+        Me.GroupBox1.Location = New System.Drawing.Point(324, 348)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(486, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(500, 128)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Console"
+        '
+        'ConsoleInput
+        '
+        Me.ConsoleInput.Location = New System.Drawing.Point(6, 103)
+        Me.ConsoleInput.Name = "ConsoleInput"
+        Me.ConsoleInput.Size = New System.Drawing.Size(487, 20)
+        Me.ConsoleInput.TabIndex = 1
         '
         'ConsoleOutput
         '
@@ -273,18 +281,8 @@ Partial Class ServerControler
         Me.ConsoleOutput.Name = "ConsoleOutput"
         Me.ConsoleOutput.ReadOnly = True
         Me.ConsoleOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.ConsoleOutput.Size = New System.Drawing.Size(473, 81)
+        Me.ConsoleOutput.Size = New System.Drawing.Size(487, 88)
         Me.ConsoleOutput.TabIndex = 0
-        '
-        'Process1
-        '
-        Me.Process1.StartInfo.Domain = ""
-        Me.Process1.StartInfo.LoadUserProfile = False
-        Me.Process1.StartInfo.Password = Nothing
-        Me.Process1.StartInfo.StandardErrorEncoding = Nothing
-        Me.Process1.StartInfo.StandardOutputEncoding = Nothing
-        Me.Process1.StartInfo.UserName = ""
-        Me.Process1.SynchronizingObject = Me
         '
         'ServerControler
         '
@@ -338,7 +336,7 @@ Partial Class ServerControler
     Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents ConsoleInput As System.Windows.Forms.TextBox
     Friend WithEvents ConsoleOutput As System.Windows.Forms.TextBox
-    Friend WithEvents Process1 As System.Diagnostics.Process
 
 End Class

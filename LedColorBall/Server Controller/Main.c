@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-void connectIR(void)
+void connectIR(void);
 void checkIRconnectStatus(void);
 short int checkIRconnected(void);
 void transmit(void);
@@ -33,7 +33,8 @@ void connectIR(void)
 	short int timer;
 	printf("INFO: Trying to make connection with IR blaster. Please wait...\n");
 #ifdef _DEBUG
-	printf("DEBUG: Type N for connection time out and Y for")
+	printf("DEBUG: Type N for connection time out and Y for ");
+#endif
 }
 void checkIRconnectStatus(void)
 {
@@ -75,7 +76,7 @@ short int checkIRconnected(void)
 	printf("DEBUG: How many IR transmitters are connected? ");
 	scanf("%hd%*c", &value);
 	return value;
-#endif // _DEBUG
+#endif
 
 	return 0;
 }
