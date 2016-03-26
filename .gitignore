@@ -6,6 +6,8 @@
 
 # Directory's
 xc888_lib_v0.1/
+LedBolXC888/bin/
+LedBolXC888/obj/
 
 # Precompiled Headers
 *.gch
