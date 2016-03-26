@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1458548962 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/main.c
+	"xc888.h"
+	"xcez_lib.h"
+	"RgbSendSPI.h"
+
+1455743308 source:/home/lubuntu/XC888lib/lib/xcez_lib.c
+	<xcez_lib.h>
+
+1458549972 /home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/RgbSendSPI.h
+	"xcez_lib.h"
+	"xc888.h"
+
+1458549198 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/RgbSendSPI.c
+	"RgbSendSPI.h"
+
