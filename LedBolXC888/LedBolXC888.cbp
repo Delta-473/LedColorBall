@@ -37,6 +37,9 @@
 		<Unit filename="LedBolXC888/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Makefile">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
