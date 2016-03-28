@@ -30,10 +30,18 @@
 		<Unit filename="../../../XC888lib/lib/xcez_lib.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="LedBolXC888/Convert.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LedBolXC888/Convert.h" />
 		<Unit filename="LedBolXC888/RgbSendSPI.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LedBolXC888/RgbSendSPI.h" />
+		<Unit filename="LedBolXC888/UsbSio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LedBolXC888/UsbSio.h" />
 		<Unit filename="LedBolXC888/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
