@@ -14,19 +14,39 @@
 
 void sendRGB (uint8_t, uint8_t, uint8_t);
 uint8_t SioIn (void);
+static uint8_t Red = 0,Green = 0,Blue = 0;
+
+void UART_isr (void) __interrupt (UART_INTERRUPT)
+{
+    es = 0;
+    Red = SioIn();
+    Green = SioIn();
+    Blue = SioIn();
+    ri = 0;
+    ti = 0;         //Zet de UART ontvangst interrupt flag op 0, printf functie zorgt ervoor dat deze op 1 komt staan ==> oneindige lus van interrupts.
+}
+
+/*void timer0_isr (void) __interrupt (TIMER0_INTERRUPT)
+{
+
+}*/
 
 void main (void)
 {
-    uint8_t Red = 0,Green = 0,Blue = 0;
     //uint8_t Red1 = 0, Red2 = 0, Red3 = 0;
     //uint8_t Green1 = 0, Green2 = 0, Green3 = 0;
     //uint8_t Blue1 = 0, Blue2 = 0, Blue3 = 0;
+    uint8_t i;
 
     initleds();
     initspi(SPI_MODE11,SPI_MSB_FIRST,SPI_1M_BAUD);
     SPI_CS = 0;
     //initlcd();
     initsio();
+
+    ea = 1;         //Globale interrupt enable opzetten
+    es = 1;         //UART interrupt
+    //et0 = 1;        //Timer0 interupt
 
 LEDS = 0b11111111;
     while(1)
@@ -72,13 +92,11 @@ LEDS = 0b11111111;
         Blue = ctoi(Blue1, Blue2, Blue3);
         printf("Blue: %d\n", Blue);*/
 
-        Red = SioIn();
-        Green = SioIn();
-        Blue = SioIn();
 
-        while(1)
+        for (i=100; i > 0; i--)
         {
         sendRGB(Red,Green,Blue);
-}
+        }
+        es = 1;
     }
 }

@@ -1,8 +1,11 @@
 # depslib dependency file v1.0
-1458548962 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/main.c
+1459283311 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/main.c
 	"xc888.h"
 	"xcez_lib.h"
 	"RgbSendSPI.h"
+	<stdio.h>
+	"UsbSio.h"
+	"Convert.h"
 
 1455743308 source:/home/lubuntu/XC888lib/lib/xcez_lib.c
 	<xcez_lib.h>
@@ -11,6 +14,21 @@
 	"xcez_lib.h"
 	"xc888.h"
 
-1458549198 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/RgbSendSPI.c
+1459196024 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/RgbSendSPI.c
 	"RgbSendSPI.h"
+
+1459035510 /home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/UsbSio.h
+	"xcez_lib.h"
+	"xc888.h"
+
+1459283311 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/UsbSio.c
+	"UsbSio.h"
+	"Convert.h"
+
+1459034098 source:/home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/Convert.c
+	"Convert.h"
+
+1459033776 /home/lubuntu/LedBol/LedColorBall/LedBolXC888/LedBolXC888/Convert.h
+	"xcez_lib.h"
+	"xc888.h"
 

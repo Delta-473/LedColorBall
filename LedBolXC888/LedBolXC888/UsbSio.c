@@ -11,7 +11,7 @@ uint8_t ctoi (uint8_t, uint8_t, uint8_t);   //char to interger
 uint8_t SioIn(void)
 {
     uint8_t Color1 = 0, Color2 = 0, Color3 = 0, Color = 0;
-    //ontvangen Rood over UART
+    //ontvangen kleur over UART
     Color1 = getchar();
     Color2 = getchar();
     Color3 = getchar();
