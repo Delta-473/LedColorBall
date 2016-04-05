@@ -5,8 +5,12 @@
 */
 
 #include <stdio.h>
+#include "Transmit.h"
+#include <winnt.h>
 
-void connectIR(void)
+typedef enum BOOLEAN {false,true} BOOL;
+
+void connectIR(void);
 void checkIRconnectStatus(void);
 short int checkIRconnected(void);
 void transmit(void);
@@ -32,8 +36,8 @@ void connectIR(void)
 {
 	short int timer;
 	printf("INFO: Trying to make connection with IR blaster. Please wait...\n");
-#ifdef _DEBUG
-	printf("DEBUG: Type N for connection time out and Y for")
+//#ifdef _DEBUG
+	//printf("DEBUG: Type N for connection time out and Y for")
 }
 void checkIRconnectStatus(void)
 {
@@ -78,8 +82,4 @@ short int checkIRconnected(void)
 #endif // _DEBUG
 
 	return 0;
-}
-void transmit(void)
-{
-
 }
