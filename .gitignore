@@ -4,6 +4,12 @@
 *.obj
 *.elf
 
+# Assembly files
+*.lst
+*.rel
+*.sym
+*.adb
+
 # Directory's
 xc888_lib_v0.1/
 LedBolXC888/bin/
