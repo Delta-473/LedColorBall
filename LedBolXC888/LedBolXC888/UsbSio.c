@@ -17,7 +17,9 @@ uint8_t SioIn(void)
     Color3 = getchar();
     //omzetten ASCII character naar getal
     Color1 = cton(Color1);
+//#if DEBUG
     printf("Color1: %d\n", Color1);
+//#endif DEBUG
     Color2 = cton(Color2);
     printf("Color2: %d\n", Color2);
     Color3 = cton(Color3);

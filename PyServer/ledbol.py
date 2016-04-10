@@ -1,10 +1,6 @@
 import sys
-import time
+import random
 import serial
-import asyncio
-#import ledbol
-
-print ("Python Serial Ledbol Server Terminal V0.1\n")
 
 #open config file
 #TODO: Add exception when config is missing cannot be opend.
@@ -31,20 +27,12 @@ ser = serial.Serial(
 
 ser.isOpen()
 
-print ("Enter your commands below. \r\nInsert exit to leave the application.")
 global R
-global G
-global B
 R = 0
+global G
 G = 0
+global B
 B = 0
-
-null = 0
-byte = 0
-global rood
-global groen
-global blauw
-
 #count amount of characters in a string
 def countinput(str):
     counter = len(str)
@@ -65,6 +53,46 @@ def printserialout():
     out.decode('ascii')
     print(bytes(out))
     return;
+
+
+#send functie
+def sendLed (rood, groen, blauw):
+
+    version = '001'
+    version = version.encode('ascii','replace')
+    ser.write(version)
+    ser.write(rood)
+    printserialout()
+                
+    ser.write(groen)
+    printserialout()
+        
+    ser.write(blauw)
+    printserialout()
+
+    return;
+
+#random color
+def randomColor():
+    C1 = 0
+    C2 = 0
+    C3 = 0
+    C1 = random.randint(0,2)
+    if C1 == 2:
+        C2 = random.randint(0,5)
+        if C2 == 5:
+            C3 = random.randint(0,5)
+        else:
+            C3 = random.randint(0,9)
+    else:
+        C2 = random.randint(0,9)
+        C3 = random.randint(0,9)
+    C1 = str(C1)
+    C2 = str(C2)
+    C3 = str(C3)
+
+    color = C1 + C2 + C3
+    return color;
 
 #input
 def USBinput():
@@ -129,41 +157,3 @@ def checkinput(str):
         return 1; 
     else:
         return 0;
-
-#send functie
-def sendLed (rood, groen, blauw):
-
-
-    version = '001'
-    version = version.encode('ascii','replace')
-    ser.write(version)
-    ser.write(rood)
-    printserialout()
-                
-    ser.write(groen)
-    printserialout()
-        
-    ser.write(blauw)
-    printserialout()
-
-    return;
- 
-while 1 :
-    s = 1
-    #get keyboard input
-    while s != 0:
-        s = USBinput()
-    r = int (R)
-    g = int (G)
-    b = int (B)
-    rood = R.encode('ascii','replace')
-    groen = G.encode('ascii','replace')
-    blauw = B.encode('ascii','replace')
-    print(R)
-    print(rood)
-    print(G)
-    print(groen)
-    print(B)
-    print(blauw)
-        
-    sendLed(rood, groen, blauw)

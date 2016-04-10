@@ -11,19 +11,44 @@
 #include "UsbSio.h"
 #include "Convert.h"
 
+//#define DEBUG = 1
+
 
 void sendRGB (uint8_t, uint8_t, uint8_t);
 uint8_t SioIn (void);
 static uint8_t Red = 0,Green = 0,Blue = 0;
 
+
 void UART_isr (void) __interrupt (UART_INTERRUPT)
 {
+    uint8_t Version = 0;
+
     es = 0;
+    Version = SioIn();
+    if(Version!= 1)
+    {
+        ri = 0;
+        ti = 0;
+        __asm
+            reti
+        __endasm;
+        /*__asm
+           push a
+           push psw
+           cjne a, Version, terug
+           pop psw
+           pop a
+        __endasm;*/
+    }
     Red = SioIn();
     Green = SioIn();
     Blue = SioIn();
+
     ri = 0;
-    ti = 0;         //Zet de UART ontvangst interrupt flag op 0, printf functie zorgt ervoor dat deze op 1 komt staan ==> oneindige lus van interrupts.
+    ti = 0; //Zet de UART ontvangst interrupt flag op 0, printf functie zorgt ervoor dat deze op 1 komt staan ==> oneindige lus van interrupts.
+    /*__asm
+        terug: reti
+    __endasm;*/
 }
 
 /*void timer0_isr (void) __interrupt (TIMER0_INTERRUPT)
