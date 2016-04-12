@@ -1,5 +1,5 @@
 /*
-//  Functies om data te ontvangen via seriÃ«le communicatie
+//  Functies om data te ontvangen via seriële communicatie
 */
 
 #include "UsbSio.h"
@@ -8,7 +8,7 @@
 uint8_t cton (uint8_t);                     //char to number
 uint8_t ctoi (uint8_t, uint8_t, uint8_t);   //char to interger
 
-uint8_t SioIn(void)
+uint8_t SioIn (void)
 {
     uint8_t Color1 = 0, Color2 = 0, Color3 = 0, Color = 0;
     //ontvangen kleur over UART

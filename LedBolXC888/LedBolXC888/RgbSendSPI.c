@@ -4,7 +4,7 @@
 
 #include "RgbSendSPI.h"
 
-void sendRGB(uint8_t Red, uint8_t Green, uint8_t Blue)
+void sendRGB (uint8_t Red, uint8_t Green, uint8_t Blue)
 {
 
     //start frame 32 bit

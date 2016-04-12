@@ -6,7 +6,7 @@
 
 uint8_t cton (uint8_t number)
 {
-    if(number>47 && number<58)
+    if(number > 47 && number < 58)
     {
         number = number - 48;
     }
@@ -19,7 +19,7 @@ uint8_t cton (uint8_t number)
 
 uint8_t ctoi (uint8_t color1, uint8_t color2, uint8_t color3)
 {
-    uint8_t color = 0,i;
+    uint8_t color = 0, i;
 
     if(color1 > 2)              //eerste cijfer limiteren tot 2.
         {
