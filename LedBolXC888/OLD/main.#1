@@ -1,9 +1,0 @@
-#include "xcez_lib.h"
-#include "xc888.h"
-
-int main (void)
-{
-	printf("Hello World");
-
-	return 0;
-}
