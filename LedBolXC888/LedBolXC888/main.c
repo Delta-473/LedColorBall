@@ -10,9 +10,9 @@
 #include <stdio.h>
 #include "UsbSio.h"
 #include "Convert.h"
+#include "Debug.h"
 
-//#define DEBUG = 1
-
+//#define DEBUG
 
 void sendRGB (uint8_t, uint8_t, uint8_t);
 uint8_t SioIn (void);
@@ -73,7 +73,7 @@ void main (void)
 LEDS = 0b11111111;
     while(1)
     {
-
+        //es = 0;
         for(i=100; i > 0; i--)
         {
         sendRGB(Red,Green,Blue);

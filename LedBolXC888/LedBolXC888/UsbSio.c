@@ -5,6 +5,8 @@
 #include "UsbSio.h"
 #include "Convert.h"
 
+//#define DEBUG
+
 uint8_t cton (uint8_t);                     //char to number
 uint8_t ctoi (uint8_t, uint8_t, uint8_t);   //char to interger
 
@@ -17,15 +19,21 @@ uint8_t SioIn (void)
     Color3 = getchar();
     //omzetten ASCII character naar getal
     Color1 = cton(Color1);
-//#if DEBUG
+#ifdef DEBUG
     printf("Color1: %d\n", Color1);
-//#endif DEBUG
+#endif
     Color2 = cton(Color2);
+#ifdef DEBUG
     printf("Color2: %d\n", Color2);
+#endif
     Color3 = cton(Color3);
+#ifdef DEBUG
     printf("Color3: %d\n", Color3);
+#endif
     Color = ctoi(Color1, Color2, Color3);
+#ifdef DEBUG
     printf("Color: %d\n", Color);
+#endif
 
     return Color;
 }

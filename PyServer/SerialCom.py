@@ -138,13 +138,13 @@ def sendLed (rood, groen, blauw):
     version = version.encode('ascii','replace')
     ser.write(version)
     ser.write(rood)
-    printserialout()
+    #printserialout()
                 
     ser.write(groen)
-    printserialout()
+    #printserialout()
         
     ser.write(blauw)
-    printserialout()
+    #printserialout()
 
     return;
  
