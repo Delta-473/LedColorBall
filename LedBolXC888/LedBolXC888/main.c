@@ -21,34 +21,23 @@ static uint8_t Red = 0,Green = 0,Blue = 0;
 
 void UART_isr (void) __interrupt (UART_INTERRUPT)
 {
-    uint8_t Version = 0;
+    uint8_t Version = 0, tempRed, tempGreen, tempBlue;
 
     es = 0;
     Version = SioIn();
-    if(Version != 1)
+    tempRed = SioIn();
+    tempGreen = SioIn();
+    tempBlue = SioIn();
+
+    if(Version == 1)
     {
-        ri = 0;
-        ti = 0;
-        __asm
-            reti
-        __endasm;
-        /*__asm
-           push a
-           push psw
-           cjne a, Version, terug
-           pop psw
-           pop a
-        __endasm;*/
+        Red = tempRed;
+        Green = tempGreen;
+        Blue = tempBlue;
     }
-    Red = SioIn();
-    Green = SioIn();
-    Blue = SioIn();
 
     ri = 0;
     ti = 0; //Zet de UART ontvangst interrupt flag op 0, printf functie zorgt ervoor dat deze op 1 komt staan ==> oneindige lus van interrupts.
-    /*__asm
-        terug: reti
-    __endasm;*/
 }
 
 /*void timer0_isr (void) __interrupt (TIMER0_INTERRUPT)
@@ -63,7 +52,6 @@ void main (void)
     initleds();
     initspi(SPI_MODE11,SPI_MSB_FIRST,SPI_1M_BAUD);
     SPI_CS = 0;
-    //initlcd();
     initsio();
 
     ea = 1;         //Globale interrupt enable opzetten

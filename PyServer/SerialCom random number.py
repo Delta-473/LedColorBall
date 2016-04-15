@@ -7,31 +7,6 @@ import ledbol
 
 print ("Python Serial Ledbol Random Number Server Terminal V0.1\n")
 
-'''#open config file
-#TODO: Add exception when config is missing cannot be opend.
-config = open("config.txt","r")
-
-COM = config.readline()
-COM = COM.replace("SERIALPORT: ","",1)
-COM = COM.rstrip('\n')  #stripping newline charachter
-
-BAUD = config.readline()
-BAUD = BAUD.replace("BAUDRATE: ","",1)
-BAUD = BAUD.rstrip('\n')
-
-print("DEBUG: opening config file succesfull\n")
-
-# configure the serial connection
-ser = serial.Serial(
-    port = COM,
-    baudrate = BAUD,
-    parity = serial.PARITY_NONE,    #uitlezen vanuit configbestand werkt nog niet
-    stopbits = serial.STOPBITS_ONE, #geeft error vb: serial.PARITY module serial
-    bytesize = serial.EIGHTBITS     #has no attribute 'PARITY'
-)
-
-ser.isOpen()
-'''
 print ("Enter your commands below. \r\nInsert exit to leave the application.")
 
 R = 0
