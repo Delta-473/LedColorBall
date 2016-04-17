@@ -25,15 +25,13 @@
 				</Compiler>
 			</Target>
 		</Build>
-		<Unit filename="../../../XC888lib/include/xc888.h" />
-		<Unit filename="../../../XC888lib/include/xcez_lib.h" />
-		<Unit filename="../../../XC888lib/lib/xcez_lib.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="LedBolXC888/Convert.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LedBolXC888/Convert.h" />
+		<Unit filename="LedBolXC888/Debug.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="LedBolXC888/RgbSendSPI.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -47,6 +45,11 @@
 		</Unit>
 		<Unit filename="Makefile">
 			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="xc888_lib_v0.1/include/xc888.h" />
+		<Unit filename="xc888_lib_v0.1/include/xcez_lib.h" />
+		<Unit filename="xc888_lib_v0.1/lib/xcez_lib.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
 			<code_completion />

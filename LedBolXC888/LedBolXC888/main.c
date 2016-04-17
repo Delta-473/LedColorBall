@@ -24,21 +24,7 @@ void UARTin(void);
 
 void UART_isr (void) __interrupt (UART_INTERRUPT)
 {
-    //uint8_t Version = 0;
-    //uint8_t tempRed, tempGreen, tempBlue;
-
     es = 0;
-    /*Version = SioIn();
-    tempRed = SioIn();
-    tempGreen = SioIn();
-    tempBlue = SioIn();*/
-
-    /*if(Version == 1)
-    {
-        Red = tempRed;
-        Green = tempGreen;
-        Blue = tempBlue;
-    }*/
 
     Status |= 0b00000001;
 
