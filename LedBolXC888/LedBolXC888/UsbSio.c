@@ -14,9 +14,18 @@ uint8_t SioIn (void)
 {
     uint8_t Color1 = 0, Color2 = 0, Color3 = 0, Color = 0;
     //ontvangen kleur over UART
-    Color1 = getchar();
-    Color2 = getchar();
-    Color3 = getchar();
+    //if (ri)
+    //{
+        Color1 = getchar();
+    //}
+    //if (ri)
+    //{
+        Color2 = getchar();
+    //}
+    //if (ri)
+    //{
+        Color3 = getchar();
+    //}
     //omzetten ASCII character naar getal
     Color1 = cton(Color1);
 #ifdef DEBUG
