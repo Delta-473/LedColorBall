@@ -16,11 +16,13 @@
 
 void sendRGB (uint8_t, uint8_t, uint8_t);
 uint8_t SioIn (void);
+void UARTin(void);
+
 static uint8_t Red = 0,Green = 0,Blue = 0;
 static uint8_t tempRed = 0, tempGreen = 0, tempBlue = 0, Version = 0;
 static uint8_t Status = 0;
-void UARTin(void);
 static uint16_t extraCounter = 9600;
+static uint8_t State = 0;
 
 void UART_isr (void) __interrupt (UART_INTERRUPT)
 {
@@ -48,7 +50,7 @@ void timer0_isr (void) __interrupt (TIMER0_INTERRUPT)       //gebasseerd op code
 
 void main (void)
 {
-    uint8_t i;
+    uint8_t i = 0;
 
     initleds();
     initspi(SPI_MODE11,SPI_MSB_FIRST,SPI_1M_BAUD);
@@ -68,7 +70,53 @@ void main (void)
 LEDS = 0b11111111;
     while(1)
     {
-        UARTin();
+
+        switch(State)
+        {
+            case 0:
+                if(Status & 0b00000001)
+                {
+                    UARTin();
+                    State = 1;
+                    break;
+                }
+                State = 4;
+                break;
+            case 1:
+                State = 2;
+                break;
+            case 2:
+                if(Version == 1)
+                {
+                    State = 3;
+                    break;
+                }
+
+                else
+                {
+                    State = 0;
+                    break;
+                }
+            case 3:
+                Red = tempRed;
+                Green = tempGreen;
+                Blue = tempBlue;
+                State = 4;
+                break;
+            case 4:
+                for (i = 0; i < 100; i++)
+                {
+                sendRGB(Red,Green,Blue);
+                }
+                State = 0;
+                Status &= 0b11111110;
+                break;
+            default:
+                State = 0;
+                break;
+        }
+
+        /*UARTin();
         if(Status == 0b00000001)
         {
 
@@ -85,7 +133,7 @@ LEDS = 0b11111111;
         for(i=100; i > 0; i--)
         {
         sendRGB(Red,Green,Blue);
-        }
+        }*/
         es = 1;
     }
 }
