@@ -1,5 +1,5 @@
 /*
-// Firmware voor XC888 microcontroler voor ledbol
+// Firmware voor XC888 microcontroler voor ledbol V0.5
 //
 // Christophe Huybrechts
 */
@@ -12,14 +12,15 @@
 #include "Convert.h"
 #include "Debug.h"
 
-//#define DEBUG
+#define DEBUG
 
 void sendRGB (uint8_t, uint8_t, uint8_t);
 uint8_t SioIn (void);
 void UARTin(void);
+uint8_t SioInV(void);
 
 static uint8_t Red = 0,Green = 0,Blue = 0;
-static uint8_t tempRed = 0, tempGreen = 0, tempBlue = 0, Version = 0;
+static uint8_t tempRed = 0, tempGreen = 0, tempBlue = 0, Version = 0, Stop = 0;
 static uint8_t Status = 0;
 static uint16_t extraCounter = 9600;
 static uint8_t State = 0;
@@ -65,7 +66,7 @@ void main (void)
 
     ea = 1;         //Globale interrupt enable opzetten
     es = 1;         //UART interrupt
-    et0 = 1;        //Timer0 interupt
+    //et0 = 1;        //Timer0 interupt
 
 LEDS = 0b11111111;
     while(1)
@@ -77,16 +78,16 @@ LEDS = 0b11111111;
                 if(Status & 0b00000001)
                 {
                     UARTin();
-                    State = 1;
+                    State = 2;
                     break;
                 }
-                State = 4;
+                State = 5;
                 break;
-            case 1:
-                State = 2;
-                break;
+            //case 1:
+              //  State = 2;
+               // break;
             case 2:
-                if(Version == 1)
+                if(Version == 'S')
                 {
                     State = 3;
                     break;
@@ -97,17 +98,32 @@ LEDS = 0b11111111;
                     State = 0;
                     break;
                 }
+
             case 3:
+                if(Stop == 'E')
+                {
+                    State = 4;
+                    break;
+                }
+
+                else
+                {
+                    State = 5;
+                    break;
+                }
+
+            case 4:
                 Red = tempRed;
                 Green = tempGreen;
                 Blue = tempBlue;
-                State = 4;
+                State = 5;
                 break;
-            case 4:
-                for (i = 0; i < 100; i++)
-                {
+
+            case 5:
+
                 sendRGB(Red,Green,Blue);
-                }
+
+
                 State = 0;
                 Status &= 0b11111110;
                 break;
@@ -116,62 +132,29 @@ LEDS = 0b11111111;
                 break;
         }
 
-        /*UARTin();
-        if(Status == 0b00000001)
-        {
-
-            if(Version == 1)
-            {
-                Red = tempRed;
-                Green = tempGreen;
-                Blue = tempBlue;
-            }
-            Status &= 0b11111110;
-        }
-
-        es = 0;
-        for(i=100; i > 0; i--)
-        {
-        sendRGB(Red,Green,Blue);
-        }*/
         es = 1;
     }
 }
 
 void UARTin(void)
 {
-    //if(/*er moet worden gelezen*/)
-       // {
-            //tr0 = 1;     //start timer0
 
-            Version = SioIn();
+            Version = SioInV();
 
-            if(Status & 0b00000010)
-               {
-                   return;
-               }
+            if(Version != 'S')
+            {
+                return;
+            }
 
             tempRed = SioIn();
 
-            if(Status & 0b00000010)
-                {
-                    return;
-                }
-
             tempGreen = SioIn();
-            if(Status & 0b00000010)
-               {
-                   return;
-               }
 
             tempBlue = SioIn();
-            if(Status & 0b00000010)
-               {
-                   return;
-               }
 
-            tr0 = 0;    //stop tirmer0
-            extraCounter = 19200;
-            tl0 = 6;//TODO: th0 of tl0 terug op 6 zetten.
-       // }
+            Stop = SioInV();
+
+            //tr0 = 0;    //stop tirmer0
+            //extraCounter = 19200;
+            //tl0 = 6;//TODO: th0 of tl0 terug op 6 zetten.
 }
