@@ -54,21 +54,31 @@ def printserialout():
     print(bytes(out))
     return;
 
+def printserialout2():
+    out = ser.read_until()
+    out.decode('ascii')
+    return;
 
 #send functie
 def sendLed (rood, groen, blauw):
 
-    version = '001'
+    version = 'S'
     version = version.encode('ascii','replace')
+    #printserialout2()
     ser.write(version)
     ser.write(rood)
-    #printserialout()
+    printserialout()
                 
     ser.write(groen)
-    #printserialout()
+    printserialout()
         
     ser.write(blauw)
-    #printserialout()
+    printserialout()
+
+    Stop = 'E'
+    Stop = Stop.encode('ascii','replace')
+    ser.write(Stop)
+    #printserialout2()
 
     return;
 
