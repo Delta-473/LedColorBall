@@ -52,57 +52,55 @@ class ServerCore():
         ServerCore.ser.write(version)
         rood = rood.encode('ascii', 'replace')
         ServerCore.ser.write(rood)
-        ServerCore.printserialout()
+        # ServerCore.printserialout()
 
         groen = groen.encode('ascii', 'replace')
         ServerCore.ser.write(groen)
-        ServerCore.printserialout()
+        # ServerCore.printserialout()
 
         blauw = blauw.encode('ascii', 'replace')
         ServerCore.ser.write(blauw)
-        ServerCore.printserialout()
+        # ServerCore.printserialout()
 
-        Stop = 'E'
-        ServerCore.ser.write(Stop)
+        stop = 'E'
+        ServerCore.ser.write(stop)
 
         return
 
-    def Convert(Color):
-        c1 = '0'
-        c2 = '0'
-        c3 = '0'
+    def convert(color):
 
-        if Color < 100:
-            c1 = str(Color)
+        if color < 100:
+            c1 = str(color)
             c2 = str(0)
-            Color = c2 + c1
-            if len(Color) == 2:
-                Color = c2 + Color
-            return Color
+            color = c2 + c1
+            if len(color) == 2:
+                color = c2 + color
+            return color
 
-        elif Color == 0:
+        elif color == 0:
 
-            Color = '000'
-            return Color
+            color = '000'
+            return color
 
         else:
-            Color = str(Color)
-            return Color
+            color = str(color)
+            return color
 
-    def Send(self):
+    def send(self):
         global rood
         global groen
         global blauw
 
-        rood = ServerCore.Convert(rood)
-        groen = ServerCore.Convert(groen)
-        blauw = ServerCore.Convert(blauw)
+        rood = ServerCore.convert(self, rood)
+        groen = ServerCore.convert(self, groen)
+        blauw = ServerCore.convert(self, blauw)
 
-        ServerCore.sendLed()
+        ServerCore.sendLed(self)
 
         return
 
-        #drukt debug info af wat microcontroller terugstuurt
+        # drukt debug info af wat microcontroller terugstuurt
+
     def printserialout(self):
         out = ServerCore.ser.read_until()
         out.decode('ascii')
@@ -116,4 +114,11 @@ class ServerCore():
         out = ServerCore.ser.read_until()
         out.decode('ascii')
         print(bytes(out))
+        return
+
+    def printserialout2(self):
+        out = ServerCore.ser.read_until()
+        out.decode('ascii')
+        print(bytes(out))
+
         return

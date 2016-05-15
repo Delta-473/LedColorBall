@@ -1,11 +1,12 @@
 from threading import Thread
 from tkinter import *
+
 import PyServerCore
 
 
 def printrood(irood):
     global rood
-    rood = PyServerCore.ServerCore.Convert(int(irood))
+    rood = PyServerCore.ServerCore.convert(int(irood))
     rood = rood.encode('ascii', 'replace')
     print("rood: ", rood)
 
@@ -15,7 +16,7 @@ def printrood(irood):
 
 def printgroen(igroen):
     global groen
-    groen = PyServerCore.ServerCore.Convert(int(igroen))
+    groen = PyServerCore.ServerCore.convert(int(igroen))
     groen = groen.encode('ascii', 'replace')
     print("groen: ", groen)
     printkleur()
@@ -24,7 +25,7 @@ def printgroen(igroen):
 
 def printblauw(iblauw):
     global blauw
-    blauw = PyServerCore.ServerCore.Convert(int(iblauw))
+    blauw = PyServerCore.ServerCore.convert(int(iblauw))
     blauw = blauw.encode('ascii', 'replace')
     print("blauw: ", blauw)
     printkleur()
@@ -36,12 +37,13 @@ def printkleur():
     global groen
     global blauw
 
-    #PyServerCore.Convert()
+    # PyServerCore.Convert()
 
     print("rood: ", rood, "groen: ", groen, "blauw: ", blauw)
-    #PyServerCore.ServerCore.Send()
+    # PyServerCore.ServerCore.Send()
     sendLed()
     return
+
 
 def sendLed():
     global rood
@@ -51,46 +53,25 @@ def sendLed():
     version = 'S'
     version = version.encode('ascii', 'replace')
     PyServerCore.ServerCore.ser.write(version)
-    #printserialout2()
+    # printserialout2()
 
     PyServerCore.ServerCore.ser.write(rood)
-    #printserialout()
-
+    # printserialout()
 
     PyServerCore.ServerCore.ser.write(groen)
-    #printserialout()
-
+    # printserialout()
 
     PyServerCore.ServerCore.ser.write(blauw)
-    #printserialout()
+    # printserialout()
 
-    Stop = 'E'
-    Stop = Stop.encode('ascii', 'replace')
-    PyServerCore.ServerCore.ser.write(Stop)
-    #printserialout2()
-
-    return
-
-def printserialout():
-    out = PyServerCore.ServerCore.ser.read_until()
-    out.decode('ascii')
-    print(bytes(out))
-    out = PyServerCore.ServerCore.ser.read_until()
-    out.decode('ascii')
-    print(bytes(out))
-    out = PyServerCore.ServerCore.ser.read_until()
-    out.decode('ascii')
-    print(bytes(out))
-    out = PyServerCore.ServerCore.ser.read_until()
-    out.decode('ascii')
-    print(bytes(out))
-    return
-def printserialout2():
-    out = PyServerCore.ServerCore.ser.read_until()
-    out.decode('ascii')
-    print(bytes(out))
+    stop = 'E'
+    stop = stop.encode('ascii', 'replace')
+    PyServerCore.ServerCore.ser.write(stop)
+    # printserialout2()
 
     return
+
+
 #################
 # Main Programma #
 #################
