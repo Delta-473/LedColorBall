@@ -42,6 +42,7 @@ LedBolXC888/obj/
 *.i*86
 *.x86_64
 *.hex
+*.pyc
 
 # Debug files
 *.dSYM/
