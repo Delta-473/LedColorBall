@@ -5,7 +5,7 @@
 #include "UsbSio.h"
 #include "Convert.h"
 
-#define DEBUG
+//#define DEBUG
 
 uint8_t cton (uint8_t);                     //char to number
 uint8_t ctoi (uint8_t, uint8_t, uint8_t);   //char to interger
