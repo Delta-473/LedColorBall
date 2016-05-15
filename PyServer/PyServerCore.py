@@ -38,9 +38,9 @@ class ServerCore():
     global groen
     global blauw
 
-    rood = 0
-    groen = 0
-    blauw = 0
+    rood = '000'
+    groen = '000'
+    blauw = '000'
 
     # send functie
     def sendLed(self):
@@ -49,19 +49,18 @@ class ServerCore():
         global blauw
 
         version = 'S'
-        # version = version.encode('ascii','replace')
         ServerCore.ser.write(version)
         rood = rood.encode('ascii', 'replace')
         ServerCore.ser.write(rood)
-        # printserialout()
+        ServerCore.printserialout()
 
         groen = groen.encode('ascii', 'replace')
         ServerCore.ser.write(groen)
-        # printserialout()
+        ServerCore.printserialout()
 
         blauw = blauw.encode('ascii', 'replace')
         ServerCore.ser.write(blauw)
-        # printserialout()
+        ServerCore.printserialout()
 
         Stop = 'E'
         ServerCore.ser.write(Stop)
@@ -69,21 +68,21 @@ class ServerCore():
         return
 
     def Convert(Color):
-        c1 = 0
-        c2 = 0
-        C3 = 0
+        c1 = '0'
+        c2 = '0'
+        c3 = '0'
 
         if Color < 100:
             c1 = str(Color)
             c2 = str(0)
             Color = c2 + c1
+            if len(Color) == 2:
+                Color = c2 + Color
             return Color
 
         elif Color == 0:
-            c1 = str(c1)
-            c2 = str(c2)
-            C3 = str(C3)
-            Color = c1 + c2 + C3
+
+            Color = '000'
             return Color
 
         else:
@@ -101,4 +100,20 @@ class ServerCore():
 
         ServerCore.sendLed()
 
+        return
+
+        #drukt debug info af wat microcontroller terugstuurt
+    def printserialout(self):
+        out = ServerCore.ser.read_until()
+        out.decode('ascii')
+        print(bytes(out))
+        out = ServerCore.ser.read_until()
+        out.decode('ascii')
+        print(bytes(out))
+        out = ServerCore.ser.read_until()
+        out.decode('ascii')
+        print(bytes(out))
+        out = ServerCore.ser.read_until()
+        out.decode('ascii')
+        print(bytes(out))
         return
