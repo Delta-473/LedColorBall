@@ -37,15 +37,15 @@ def printkleur():
     global groen
     global blauw
 
-    # PyServerCore.Convert()
+    core = PyServerCore.ServerCore()
 
     print("rood: ", rood, "groen: ", groen, "blauw: ", blauw)
-    # PyServerCore.ServerCore.Send()
-    sendLed()
+    core.send_led(rood, groen, blauw)
+    #send_led()
     return
 
 
-def sendLed():
+def send_led():
     global rood
     global groen
     global blauw
@@ -80,6 +80,8 @@ def main_gui():
     master.title("Python GUI Server")
     master.geometry("350x200")
 
+    core = PyServerCore.ServerCore()
+
     roodslider = Scale(master, from_=255, to=0, command=printrood)
     roodslider.pack(side="left")  # geldige opties zijn left, right, top, bottom
     groenslider = Scale(master, from_=255, to=0, command=printgroen)
@@ -88,7 +90,7 @@ def main_gui():
     blauwslider.pack(side="left")
     w = Scale(master, from_=0, to=200, orient=HORIZONTAL)
     w.pack()
-    fred = Button(master, fg="red", bg="green")
+    fred = Button(master, fg="black", bg="green", text="random kleur", command=core.random_color)
     fred.pack()
     master.mainloop()
     return

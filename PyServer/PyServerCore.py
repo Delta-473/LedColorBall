@@ -1,7 +1,17 @@
 import serial
+import random
+
+
+#################
+# Globale Variable #
+#################
+global rood
+global groen
+global blauw
 
 
 class ServerCore():
+
     #####################
     # Seriële communicatie #
     #####################
@@ -31,39 +41,27 @@ class ServerCore():
 
     ser.isOpen()
 
-    #################
-    # Globale Variable #
-    #################
-    global rood
-    global groen
-    global blauw
-
-    rood = '000'
-    groen = '000'
-    blauw = '000'
-
     # send functie
-    def sendLed(self):
-        global rood
-        global groen
-        global blauw
+    def send_led(self, rood, groen, blauw):
 
         version = 'S'
+        version = version.encode('ascii', 'replace')
         ServerCore.ser.write(version)
-        rood = rood.encode('ascii', 'replace')
+        # printserialout2()
+
         ServerCore.ser.write(rood)
-        # ServerCore.printserialout()
+        # printserialout()
 
-        groen = groen.encode('ascii', 'replace')
         ServerCore.ser.write(groen)
-        # ServerCore.printserialout()
+        # printserialout()
 
-        blauw = blauw.encode('ascii', 'replace')
         ServerCore.ser.write(blauw)
-        # ServerCore.printserialout()
+        # printserialout()
 
         stop = 'E'
+        stop = stop.encode('ascii', 'replace')
         ServerCore.ser.write(stop)
+        # printserialout2()
 
         return
 
@@ -95,7 +93,7 @@ class ServerCore():
         groen = ServerCore.convert(self, groen)
         blauw = ServerCore.convert(self, blauw)
 
-        ServerCore.sendLed(self)
+        ServerCore.send_led(self)
 
         return
 
@@ -122,3 +120,43 @@ class ServerCore():
         print(bytes(out))
 
         return
+
+    def random_color(self):
+        global rood
+        global groen
+        global blauw
+
+        rood = ServerCore.random_color_generator(self)
+        groen = ServerCore.random_color_generator(self)
+        blauw = ServerCore.random_color_generator(self)
+
+        rood = rood.encode('ascii', 'replace')
+        groen = groen.encode('ascii', 'replace')
+        blauw = blauw.encode('ascii', 'replace')
+
+        ServerCore.send_led(self, rood, groen, blauw)
+
+        print(rood)
+        print(groen)
+        print(blauw)
+
+        return
+
+        # random color
+    def random_color_generator(self):
+        c1 = random.randint(0, 2)
+        if c1 == 2:
+            c2 = random.randint(0, 5)
+            if c2 == 5:
+                c3 = random.randint(0, 5)
+            else:
+                c3 = random.randint(0, 9)
+        else:
+            c2 = random.randint(0, 9)
+            c3 = random.randint(0, 9)
+        c1 = str(c1)
+        c2 = str(c2)
+        c3 = str(c3)
+
+        color = c1 + c2 + c3
+        return color
