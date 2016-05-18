@@ -1,20 +1,21 @@
 import serial
 import random
+import time
 
-
-#################
+####################
 # Globale Variable #
-#################
+####################
 global rood
 global groen
 global blauw
+global en_ran
+en_ran = 0
 
 
 class ServerCore():
-
-    #####################
+    ########################
     # Seriële communicatie #
-    #####################
+    ########################
 
     # open config file
     # TODO: Add exception when config is missing cannot be opend.
@@ -43,6 +44,10 @@ class ServerCore():
 
     # send functie
     def send_led(self, rood, groen, blauw):
+        global en_ran
+
+        #if en_ran == 1:
+         #   return
 
         version = 'S'
         version = version.encode('ascii', 'replace')
@@ -97,7 +102,64 @@ class ServerCore():
 
         return
 
-        # drukt debug info af wat microcontroller terugstuurt
+    def en_random_color(self):
+        global en_ran
+
+        if en_ran == 0:
+            en_ran = 1
+        else:
+            en_ran = 0
+
+        #RandomColor.random_color(self)
+
+
+class RandomColor():
+    def random_color(self):
+        global rood
+        global groen
+        global blauw
+        global en_ran
+        global tijd
+        tijd = 0.1  # TODO fix gui gedeelte zodat waarde doorgegeven kan worden aan functie
+        while 1:
+            while en_ran == 1:
+                rood = RandomColor.random_color_generator(self)
+                groen = RandomColor.random_color_generator(self)
+                blauw = RandomColor.random_color_generator(self)
+
+                rood = rood.encode('ascii', 'replace')
+                groen = groen.encode('ascii', 'replace')
+                blauw = blauw.encode('ascii', 'replace')
+
+                ServerCore.send_led(self, rood, groen, blauw)
+
+                print(rood)
+                print(groen)
+                print(blauw)
+
+                time.sleep(tijd)
+
+    def random_color_generator(self):
+        c1 = random.randint(0, 2)
+        if c1 == 2:
+            c2 = random.randint(0, 5)
+            if c2 == 5:
+                c3 = random.randint(0, 5)
+            else:
+                c3 = random.randint(0, 9)
+        else:
+            c2 = random.randint(0, 9)
+            c3 = random.randint(0, 9)
+        c1 = str(c1)
+        c2 = str(c2)
+        c3 = str(c3)
+
+        color = c1 + c2 + c3
+        return color
+
+
+class DebugFunctions():
+    # drukt debug info af wat microcontroller terugstuurt
 
     def printserialout(self):
         out = ServerCore.ser.read_until()
@@ -118,45 +180,4 @@ class ServerCore():
         out = ServerCore.ser.read_until()
         out.decode('ascii')
         print(bytes(out))
-
         return
-
-    def random_color(self):
-        global rood
-        global groen
-        global blauw
-
-        rood = ServerCore.random_color_generator(self)
-        groen = ServerCore.random_color_generator(self)
-        blauw = ServerCore.random_color_generator(self)
-
-        rood = rood.encode('ascii', 'replace')
-        groen = groen.encode('ascii', 'replace')
-        blauw = blauw.encode('ascii', 'replace')
-
-        ServerCore.send_led(self, rood, groen, blauw)
-
-        print(rood)
-        print(groen)
-        print(blauw)
-
-        return
-
-        # random color
-    def random_color_generator(self):
-        c1 = random.randint(0, 2)
-        if c1 == 2:
-            c2 = random.randint(0, 5)
-            if c2 == 5:
-                c3 = random.randint(0, 5)
-            else:
-                c3 = random.randint(0, 9)
-        else:
-            c2 = random.randint(0, 9)
-            c3 = random.randint(0, 9)
-        c1 = str(c1)
-        c2 = str(c2)
-        c3 = str(c3)
-
-        color = c1 + c2 + c3
-        return color
