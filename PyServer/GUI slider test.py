@@ -1,7 +1,6 @@
-﻿import sys
-import time
+﻿from tkinter import *
+
 import serial
-from tkinter import *
 
 #####################
 # Seriële communicatie #
@@ -39,10 +38,6 @@ global rood
 global groen
 global blauw
 
-rood = 0
-groen = 0
-blauw = 0
-
 
 ####################
 # Functies Declaraties #
@@ -53,8 +48,8 @@ def printrood(roods):
     rood = roods
     print("rood: ", rood)
     printkleur()
-    Send()
-    return;
+    send()
+    return
 
 
 def printgroen(groens):
@@ -62,8 +57,8 @@ def printgroen(groens):
     groen = groens
     print("groen: ", groen)
     printkleur()
-    Send()
-    return;
+    send()
+    return
 
 
 def printblauw(blauws):
@@ -71,7 +66,7 @@ def printblauw(blauws):
     blauw = blauws
     print("blauw: ", blauw)
     printkleur()
-    return;
+    return
 
 
 def printkleur():
@@ -80,11 +75,11 @@ def printkleur():
     global blauw
 
     print("rood: ", rood, "groen: ", groen, "blauw: ", blauw)
-    return;
+    return
 
 
 # send functie
-def sendLed():
+def send_led():
     global rood
     global groen
     global blauw
@@ -104,51 +99,50 @@ def sendLed():
     ser.write(blauw)
     # printserialout()
 
-    Stop = 'E'
-    ser.write(Stop)
+    stop = 'E'
+    ser.write(stop)
 
-    return;
+    return
 
 
-def Convert(Color):
-    C1 = 0
-    C2 = 0
-    C3 = 0
+def convert(color):
+    c1 = 0
+    c2 = 0
+    c3 = 0
 
-    if Color < 100:
-        C1 = str(Color)
-        C2 = str(0)
-        Color = C2 + C1
-        return Color;
+    if color < 100:
+        c1 = str(color)
+        c2 = str(0)
+        color = c2 + c1
+        return color
 
-    elif Color == 0:
-        C1 = str(C1)
-        C2 = str(C2)
-        C3 = str(C3)
-        Color = C1 + C2 + C3
-        return Color;
+    elif color == 0:
+        c1 = str(c1)
+        c2 = str(c2)
+        c3 = str(c3)
+        color = c1 + c2 + c3
+        return color
 
     else:
-        Color = str(Color)
-        return Color;
-
-    return;
+        color = str(color)
+        return color
 
 
-def Send():
+
+def send():
     global rood
     global groen
     global blauw
 
     printkleur()
 
-    rood = Convert(rood)
-    groen = Convert(groen)
-    blauw = Convert(blauw)
+    rood = convert(rood)
+    groen = convert(groen)
+    blauw = convert(blauw)
 
-    sendLed()
+    send_led()
 
-    return;
+    return
 
 
 #################

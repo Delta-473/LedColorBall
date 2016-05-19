@@ -1,44 +1,40 @@
-import sys
 import random
+
 import serial
 
-#open config file
-#TODO: Add exception when config is missing cannot be opend.
-config = open("config.txt","r")
+# open config file
+# TODO: Add exception when config is missing cannot be opend.
+config = open("config.txt", "r")
 
 COM = config.readline()
-COM = COM.replace("SERIALPORT: ","",1)
-COM = COM.rstrip('\n')  #stripping newline charachter
+COM = COM.replace("SERIALPORT: ", "", 1)
+COM = COM.rstrip('\n')  # stripping newline charachter
 
 BAUD = config.readline()
-BAUD = BAUD.replace("BAUDRATE: ","",1)
+BAUD = BAUD.replace("BAUDRATE: ", "", 1)
 BAUD = BAUD.rstrip('\n')
 
 print("DEBUG: opening config file succesfull\n")
 
 # configure the serial connection
 ser = serial.Serial(
-    port = COM,
-    baudrate = BAUD,
-    parity = serial.PARITY_NONE,    #uitlezen vanuit configbestand werkt nog niet
-    stopbits = serial.STOPBITS_ONE, #geeft error vb: serial.PARITY module serial
-    bytesize = serial.EIGHTBITS     #has no attribute 'PARITY'
+    port=COM,
+    baudrate=BAUD,
+    parity=serial.PARITY_NONE,  # uitlezen vanuit configbestand werkt nog niet
+    stopbits=serial.STOPBITS_ONE,  # geeft error vb: serial.PARITY module serial
+    bytesize=serial.EIGHTBITS  # has no attribute 'PARITY'
 )
 
 ser.isOpen()
 
-global R
-R = 0
-global G
-G = 0
-global B
-B = 0
-#count amount of characters in a string
-def countinput(str):
-    counter = len(str)
-    return counter;
 
-#drukt debug info af wat microcontroller terugstuurt
+# count amount of characters in a string
+def count_input(str):
+    counter = len(str)
+    return counter
+
+
+# drukt debug info af wat microcontroller terugstuurt
 def printserialout():
     out = ser.read_until()
     out.decode('ascii')
@@ -52,118 +48,118 @@ def printserialout():
     out = ser.read_until()
     out.decode('ascii')
     print(bytes(out))
-    return;
+    return
+
 
 def printserialout2():
     out = ser.read_until()
     out.decode('ascii')
-    return;
+    return
 
-#send functie
-def sendLed (rood, groen, blauw):
 
+# send functie
+def send_led(rood, groen, blauw):
     version = 'S'
-    version = version.encode('ascii','replace')
-    #printserialout2()
+    version = version.encode('ascii', 'replace')
+    # printserialout2()
     ser.write(version)
     ser.write(rood)
-    printserialout()
-                
+    # printserialout()
+
     ser.write(groen)
-    printserialout()
-        
+    # printserialout()
+
     ser.write(blauw)
-    printserialout()
+    # printserialout()
 
-    Stop = 'E'
-    Stop = Stop.encode('ascii','replace')
-    ser.write(Stop)
-    #printserialout2()
+    stop = 'E'
+    stop = stop.encode('ascii', 'replace')
+    ser.write(stop)
+    # printserialout2()
 
-    return;
+    return
 
-#random color
-def randomColor():
-    C1 = 0
-    C2 = 0
-    C3 = 0
-    C1 = random.randint(0,2)
-    if C1 == 2:
-        C2 = random.randint(0,5)
-        if C2 == 5:
-            C3 = random.randint(0,5)
+
+# random color
+def random_color():
+    c1 = random.randint(0, 2)
+    if c1 == 2:
+        c2 = random.randint(0, 5)
+        if c2 == 5:
+            c3 = random.randint(0, 5)
         else:
-            C3 = random.randint(0,9)
+            c3 = random.randint(0, 9)
     else:
-        C2 = random.randint(0,9)
-        C3 = random.randint(0,9)
-    C1 = str(C1)
-    C2 = str(C2)
-    C3 = str(C3)
+        c2 = random.randint(0, 9)
+        c3 = random.randint(0, 9)
+    c1 = str(c1)
+    c2 = str(c2)
+    c3 = str(c3)
 
-    color = C1 + C2 + C3
-    return color;
+    color = c1 + c2 + c3
+    return color
 
-#input
-def USBinput():
-    #global voor de variable zetten zorgt ervoor dat de waarde van
-    #variable globaal wordt aangepast
-    global R
-    global G
-    global B
-    #get keyboard input
-    R = input("Enter Red >> ")
-    S = checkinput(R)           #S is status
-    if S == 1:
-        return S;
-    
-    counter = countinput(R)
+
+# input
+def usb_input():
+    # global voor de variable zetten zorgt ervoor dat de waarde van
+    # variable globaal wordt aangepast
+    global r
+    global g
+    global b
+    # get keyboard input
+    r = input("Enter Red >> ")
+    s = check_input()  # s is status
+    if s == 1:
+        return s
+
+    counter = count_input(r)
     if counter != 3:
-        S = 1;
+        s = 1
         print("ERROR: Invalid value\n")
-        return S
-    
-    G = input("Enter Green >> ")
-    S = checkinput(G)
-    if S == 1:
-        return S;
-    
-    counter = countinput(G)
-    if counter != 3:
-        S = 1;
-        print("ERROR: Invalid value\n")
-        return S
-    
-    B = input("Enter Blue >> ")
-    S = checkinput(B)
-    if S == 1:
-        return S;
-    
-    counter = countinput(B)
-    if counter != 3:
-        S = 1;
-        print("ERROR: Invalid value\n")
-        return S
-    
-    return S;
+        return s
 
-#check input
-def checkinput(str):
+    g = input("Enter Green >> ")
+    s = check_input()
+    if s == 1:
+        return s
 
-    if R == 'exit':
+    counter = count_input(g)
+    if counter != 3:
+        s = 1
+        print("ERROR: Invalid value\n")
+        return s
+
+    b = input("Enter Blue >> ")
+    s = check_input()
+    if s == 1:
+        return s
+
+    counter = count_input(b)
+    if counter != 3:
+        s = 1
+        print("ERROR: Invalid value\n")
+        return s
+
+    return s
+
+
+# check input
+def check_input():
+    if r == 'exit':
         ser.close()
         exit()
-    elif G == 'exit':
+    elif g == 'exit':
         ser.close()
         exit()
-    elif B == 'exit':
+    elif b == 'exit':
         ser.close()
         exit()
-    elif R == 'reset':
-        return 1;
-    elif G == 'reset':
-        return 1;
-    elif B == 'reset':
-        return 1; 
+    elif r == 'reset':
+        return 1
+    elif g == 'reset':
+        return 1
+    elif b == 'reset':
+        return 1
     else:
-        return 0;
+        return 0

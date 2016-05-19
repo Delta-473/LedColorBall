@@ -15,7 +15,7 @@ while 1 :
     s = 1
 
     while s != 0:
-        s = ledbol.USBinput()
+        s = ledbol.usb_input()
     settings.rood = settings.R.encode('ascii','replace')
     print(R)
     print(rood)

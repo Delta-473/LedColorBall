@@ -134,7 +134,7 @@ def checkinput(str):
 def sendLed (rood, groen, blauw):
 
 
-    version = '001'
+    version = 'S'
     version = version.encode('ascii','replace')
     ser.write(version)
     ser.write(rood)
@@ -145,6 +145,10 @@ def sendLed (rood, groen, blauw):
         
     ser.write(blauw)
     #printserialout()
+
+    Stop = 'E'
+    Stop = Stop.encode('ascii','replace')
+    ser.write(Stop)
 
     return;
  
